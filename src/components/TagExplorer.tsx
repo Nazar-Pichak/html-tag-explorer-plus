@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { 
   ChevronDown, 
@@ -79,33 +78,27 @@ export const TagExplorer: React.FC = () => {
 
   const filteredTags = useMemo(() => {
     return htmlTags.filter(tag => {
-      // Search term filter
       if (searchTerm && !tag.name.toLowerCase().includes(searchTerm.toLowerCase()) && 
           !tag.description.toLowerCase().includes(searchTerm.toLowerCase())) {
         return false;
       }
       
-      // Name filter
       if (filters.name && !tag.name.toLowerCase().includes(filters.name.toLowerCase())) {
         return false;
       }
       
-      // Category filter
       if (filters.category && tag.category !== filters.category) {
         return false;
       }
       
-      // isPair filter
       if (filters.isPair !== '' && tag.isPair !== filters.isPair) {
         return false;
       }
       
-      // Display filter
       if (filters.display && tag.display !== filters.display) {
         return false;
       }
       
-      // Global attributes filter
       if (filters.hasGlobalAttributes !== '' && tag.hasGlobalAttributes !== filters.hasGlobalAttributes) {
         return false;
       }
@@ -213,7 +206,7 @@ export const TagExplorer: React.FC = () => {
             )}
             {filters.isPair !== '' && (
               <Badge variant="outline" className="flex items-center gap-1">
-                {filters.isPair ? 'Pair Tag' : 'Self-closing Tag'}
+                {filters.isPair ? 'Pair Tag' : 'Single Tag'}
                 <X 
                   className="h-3 w-3 cursor-pointer" 
                   onClick={() => setFilters(prev => ({ ...prev, isPair: '' }))} 
@@ -313,7 +306,7 @@ export const TagExplorer: React.FC = () => {
                     {tag.isPair ? (
                       <Badge variant="outline" className="bg-blue-50">Pair</Badge>
                     ) : (
-                      <Badge variant="outline" className="bg-amber-50">Self-closing</Badge>
+                      <Badge variant="outline" className="bg-amber-50">Single</Badge>
                     )}
                   </TableCell>
                   <TableCell>{tag.display}</TableCell>

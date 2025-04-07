@@ -24,7 +24,7 @@ export const TagDetail: React.FC<TagDetailProps> = ({ tag }) => {
         
         <div className="flex flex-wrap gap-2 pt-2">
           <Badge variant="outline" className={tag.isPair ? "bg-blue-50" : "bg-amber-50"}>
-            {tag.isPair ? 'Pair Tag' : 'Self-closing Tag'}
+            {tag.isPair ? 'Pair Tag' : 'Single Tag'}
           </Badge>
           <Badge variant="outline" className="bg-purple-50">
             Display: {tag.display}

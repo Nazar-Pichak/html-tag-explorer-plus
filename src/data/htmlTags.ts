@@ -1,4 +1,3 @@
-
 import { HtmlTag } from '@/types/tag';
 
 export const htmlTags: HtmlTag[] = [
@@ -844,7 +843,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'section',
-    description: 'Represents a standalone section of a document, which doesn't have a more specific semantic element to represent it.',
+    description: "Represents a standalone section of a document, which doesn't have a more specific semantic element to represent it.",
     isPair: true,
     display: 'block',
     hasGlobalAttributes: true,
@@ -934,7 +933,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'summary',
-    description: 'Specifies a summary, caption, or legend for a details element's disclosure box.',
+    description: "Specifies a summary, caption, or legend for a details element's disclosure box.",
     isPair: true,
     display: 'block',
     hasGlobalAttributes: true,
@@ -1044,7 +1043,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'title',
-    description: 'Defines the document's title that is shown in a browser's title bar or a page's tab.',
+    description: "Defines the document's title that is shown in a browser's title bar or a page's tab.",
     isPair: true,
     display: 'none',
     hasGlobalAttributes: true,
@@ -1114,7 +1113,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'wbr',
-    description: 'Represents a word break opportunity—a position within text where the browser may optionally break a line.',
+    description: "Represents a word break opportunity—a position within text where the browser may optionally break a line.",
     isPair: false,
     display: 'inline',
     hasGlobalAttributes: true,

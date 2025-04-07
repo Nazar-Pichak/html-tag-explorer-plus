@@ -764,7 +764,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'noembed',
-    description: 'Fallback content for browsers that don't support the embed element. Deprecated.',
+    description: 'Fallback content for browsers that don not support the embed element. Deprecated.',
     isPair: true,
     display: 'inline',
     hasGlobalAttributes: true,
@@ -774,7 +774,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'noframes',
-    description: 'Provides content to be presented in browsers that don't support frames. Deprecated in HTML5.',
+    description: "Provides content to be presented in browsers that don't support frames. Deprecated in HTML5.",
     isPair: true,
     display: 'none',
     hasGlobalAttributes: true,
@@ -784,7 +784,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'noscript',
-    description: 'Defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser.',
+    description: "Defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser.",
     isPair: true,
     display: 'block',
     hasGlobalAttributes: true,
@@ -924,7 +924,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'rp',
-    description: 'Used to provide fall-back parentheses for browsers that do not support ruby annotations.',
+    description: "Used to provide fall-back parentheses for browsers that don't support ruby annotations.",
     isPair: true,
     display: 'inline',
     hasGlobalAttributes: true,
@@ -1254,7 +1254,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'tt',
-    description: 'Creates inline text which is presented using the user agent's default monospace font face. Deprecated in HTML5.',
+    description: "Creates inline text which is presented using the user agent's default monospace font face. Deprecated in HTML5.",
     isPair: true,
     display: 'inline',
     hasGlobalAttributes: true,

@@ -1,3 +1,4 @@
+
 import { HtmlTag } from '@/types/tag';
 
 export const htmlTags: HtmlTag[] = [
@@ -20,6 +21,16 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Inline Text'
+  },
+  {
+    name: 'acronym',
+    description: 'Represents an acronym. Deprecated in HTML5.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'address',
@@ -112,6 +123,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Inline Text'
   },
   {
+    name: 'big',
+    description: 'Renders the enclosed text in a bigger font. Deprecated in HTML5.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
     name: 'blockquote',
     description: 'Indicates that the enclosed text is an extended quotation.',
     isPair: true,
@@ -170,6 +191,16 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Table'
+  },
+  {
+    name: 'center',
+    description: 'Centers its content horizontally. Deprecated in HTML5.',
+    isPair: true,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'cite',
@@ -282,6 +313,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Interactive'
   },
   {
+    name: 'dir',
+    description: 'Directory list. Deprecated in HTML5.',
+    isPair: true,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
     name: 'div',
     description: 'Generic container for flow content that by itself does not represent anything.',
     isPair: true,
@@ -332,6 +373,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Embedded Content'
   },
   {
+    name: 'fencedframe',
+    description: 'An experimental element for embedding isolated content from another website.',
+    isPair: true,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: ['src'],
+    eventListeners: [],
+    category: 'Embedded Content'
+  },
+  {
     name: 'fieldset',
     description: 'Used to group several controls as well as labels within a web form.',
     isPair: true,
@@ -362,6 +413,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Content'
   },
   {
+    name: 'font',
+    description: 'Defines font, color, and size for text. Deprecated in HTML5.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: ['color', 'face', 'size'],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
     name: 'footer',
     description: 'Represents a footer for its nearest sectioning content or sectioning root element.',
     isPair: true,
@@ -380,6 +441,26 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: ['accept-charset', 'action', 'autocomplete', 'enctype', 'method', 'name', 'novalidate', 'target'],
     eventListeners: [],
     category: 'Forms'
+  },
+  {
+    name: 'frame',
+    description: 'Defines a particular area in which another HTML document can be displayed. Deprecated in HTML5.',
+    isPair: false,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: ['src', 'name', 'frameborder', 'marginwidth', 'marginheight', 'noresize', 'scrolling'],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
+    name: 'frameset',
+    description: 'Used to hold frame elements. Deprecated in HTML5.',
+    isPair: true,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: ['cols', 'rows'],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'h1',
@@ -622,6 +703,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Inline Text'
   },
   {
+    name: 'marquee',
+    description: 'Used to create scrolling text or images. Deprecated.',
+    isPair: true,
+    display: 'inline-block',
+    hasGlobalAttributes: true,
+    specificAttributes: ['behavior', 'direction', 'scrollamount', 'scrolldelay'],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
     name: 'menu',
     description: 'Represents a group of commands that a user can perform or activate.',
     isPair: true,
@@ -660,6 +751,36 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Sectioning'
+  },
+  {
+    name: 'nobr',
+    description: 'Prevents the text it contains from automatically wrapping across multiple lines. Deprecated.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
+    name: 'noembed',
+    description: 'Fallback content for browsers that don't support the embed element. Deprecated.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
+    name: 'noframes',
+    description: 'Provides content to be presented in browsers that don't support frames. Deprecated in HTML5.',
+    isPair: true,
+    display: 'none',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'noscript',
@@ -733,13 +854,13 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'param',
-    description: 'Defines parameters for an object element.',
+    description: 'Defines parameters for an object element. Deprecated in HTML5.',
     isPair: false,
     display: 'none',
     hasGlobalAttributes: true,
     specificAttributes: ['name', 'value'],
     eventListeners: [],
-    category: 'Embedded Content'
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'picture',
@@ -750,6 +871,16 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Image & Multimedia'
+  },
+  {
+    name: 'plaintext',
+    description: 'Renders everything following it as raw text, without interpreting any HTML. Deprecated.',
+    isPair: false,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'pre',
@@ -782,6 +913,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Inline Text'
   },
   {
+    name: 'rb',
+    description: 'Used to delimit the base text component of a ruby annotation. Deprecated.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
     name: 'rp',
     description: 'Used to provide fall-back parentheses for browsers that do not support ruby annotations.',
     isPair: true,
@@ -800,6 +941,16 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Text'
+  },
+  {
+    name: 'rtc',
+    description: 'Embraces semantic annotations of characters presented in a ruby of rb elements. Deprecated.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'ruby',
@@ -842,6 +993,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Scripting'
   },
   {
+    name: 'search',
+    description: 'Represents a part of a document whose contents are specific to finding content within the document.',
+    isPair: true,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Sectioning'
+  },
+  {
     name: 'section',
     description: "Represents a standalone section of a document, which doesn't have a more specific semantic element to represent it.",
     isPair: true,
@@ -860,6 +1021,16 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: ['autocomplete', 'autofocus', 'disabled', 'form', 'multiple', 'name', 'required', 'size'],
     eventListeners: [],
     category: 'Forms'
+  },
+  {
+    name: 'selectedcontent',
+    description: 'Experimental element that contains a copy of the selected portion of a documentFragment.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Interactive'
   },
   {
     name: 'slot',
@@ -900,6 +1071,16 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Inline Text'
+  },
+  {
+    name: 'strike',
+    description: 'Renders text with a strikethrough, or a line through it. Deprecated in HTML5.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   },
   {
     name: 'strong',
@@ -1072,6 +1253,16 @@ export const htmlTags: HtmlTag[] = [
     category: 'Image & Multimedia'
   },
   {
+    name: 'tt',
+    description: 'Creates inline text which is presented using the user agent's default monospace font face. Deprecated in HTML5.',
+    isPair: true,
+    display: 'inline',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
+  },
+  {
     name: 'u',
     description: 'Represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation.',
     isPair: true,
@@ -1120,5 +1311,15 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Inline Text'
+  },
+  {
+    name: 'xmp',
+    description: 'Renders text between the start and end tags without interpreting the HTML in between. Deprecated in HTML5.',
+    isPair: true,
+    display: 'block',
+    hasGlobalAttributes: true,
+    specificAttributes: [],
+    eventListeners: [],
+    category: 'Obsolete & Deprecated'
   }
 ];

@@ -12,7 +12,7 @@ const Index = () => {
       </main>
       <footer className="bg-white border-t py-4">
         <div className="container mx-auto px-4 text-center text-sm text-gray-500">
-          <p>HTML Tag Explorer © {new Date().getFullYear()} - Data based on MDN Web Docs</p>
+          <p>HTML Tag Explorer © {new Date().getFullYear()} - Featuring all 127 HTML tags from MDN Web Docs</p>
         </div>
       </footer>
     </div>

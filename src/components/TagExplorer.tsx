@@ -295,8 +295,8 @@ export const TagExplorer: React.FC = () => {
               sortedTags.map((tag) => (
                 <TableRow 
                   key={tag.name}
-                  className="hover:bg-muted/50 cursor-pointer"
                   onClick={() => setSelectedTag(tag)}
+                  className={tag.category === 'Obsolete & Deprecated' ? 'bg-red-200 hover:bg-red-300 cursor-pointer' : "hover:bg-muted/50 cursor-pointer"}
                 >
                   <TableCell className="font-mono font-medium">
                     &lt;{tag.name}&gt;
@@ -304,17 +304,17 @@ export const TagExplorer: React.FC = () => {
                   <TableCell className="max-w-[400px] truncate">{tag.description}</TableCell>
                   <TableCell>
                     {tag.isPair ? (
-                      <Badge variant="outline" className="bg-blue-50">Pair</Badge>
+                      <Badge variant="outline" className="bg-blue-100">Pair</Badge>
                     ) : (
-                      <Badge variant="outline" className="bg-amber-50">Single</Badge>
+                      <Badge variant="outline" className="bg-amber-100">Single</Badge>
                     )}
                   </TableCell>
                   <TableCell>{tag.display}</TableCell>
                   <TableCell>
                     {tag.hasGlobalAttributes ? (
-                      <Badge variant="outline" className="bg-green-50">Yes</Badge>
+                      <Badge variant="outline" className="bg-green-100">Yes</Badge>
                     ) : (
-                      <Badge variant="outline" className="bg-red-50">No</Badge>
+                      <Badge variant="outline" className="bg-red-100">No</Badge>
                     )}
                   </TableCell>
                   <TableCell>

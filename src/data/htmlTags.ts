@@ -568,7 +568,7 @@ export const htmlTags: HtmlTag[] = [
     isPair: true,
     display: 'block',
     hasGlobalAttributes: true,
-    specificAttributes: ['xmlns'],
+    specificAttributes: ['xmlns', 'lang'],
     eventListeners: [],
     category: 'Root'
   },

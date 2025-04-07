@@ -73,7 +73,7 @@ export const htmlTags: HtmlTag[] = [
   },
   {
     name: 'b',
-    description: 'Draw the reader's attention to the element's contents, which are not otherwise granted special importance.',
+    description: "Draw the reader's attention to the element's contents, which are not otherwise granted special importance.",
     isPair: true,
     display: 'inline',
     hasGlobalAttributes: true,
@@ -151,7 +151,6 @@ export const htmlTags: HtmlTag[] = [
     eventListeners: [],
     category: 'Forms'
   },
-  // Adding a few more entries, not all 127 to keep the example manageable
   {
     name: 'canvas',
     description: 'Used to draw graphics via scripting (usually JavaScript).',
@@ -311,7 +310,5 @@ export const htmlTags: HtmlTag[] = [
     specificAttributes: [],
     eventListeners: [],
     category: 'Content'
-  },
-  // Note: This is a subset of the 127 HTML tags to keep the file manageable
-  // A production app would include all 127 tags
+  }
 ];

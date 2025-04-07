@@ -77,7 +77,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Categories</SelectItem>
+              <SelectItem value="all-categories">All Categories</SelectItem>
               {categoryOptions.map((category) => (
                 <SelectItem key={category} value={category}>
                   {category}
@@ -90,9 +90,9 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
         <div className="space-y-2">
           <Label htmlFor="isPair">Tag Type</Label>
           <Select
-            value={filters.isPair === '' ? '' : filters.isPair ? 'true' : 'false'}
+            value={filters.isPair === '' ? 'all-types' : filters.isPair ? 'true' : 'false'}
             onValueChange={(value) => {
-              const boolValue = value === '' ? '' : value === 'true';
+              const boolValue = value === 'all-types' ? '' : value === 'true';
               setFilters((prev) => ({ ...prev, isPair: boolValue }));
             }}
           >
@@ -100,7 +100,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
               <SelectValue placeholder="Select tag type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Types</SelectItem>
+              <SelectItem value="all-types">All Types</SelectItem>
               <SelectItem value="true">Pair Tags</SelectItem>
               <SelectItem value="false">Self-closing Tags</SelectItem>
             </SelectContent>
@@ -110,14 +110,17 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
         <div className="space-y-2">
           <Label htmlFor="display">Display Type</Label>
           <Select
-            value={filters.display}
-            onValueChange={(value) => setFilters((prev) => ({ ...prev, display: value as HtmlTag['display'] }))}
+            value={filters.display || 'all-display-types'}
+            onValueChange={(value) => setFilters((prev) => ({ 
+              ...prev, 
+              display: value === 'all-display-types' ? '' : value as HtmlTag['display'] 
+            }))}
           >
             <SelectTrigger id="display">
               <SelectValue placeholder="Select display type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Display Types</SelectItem>
+              <SelectItem value="all-display-types">All Display Types</SelectItem>
               {displayOptions.map((display) => (
                 <SelectItem key={display} value={display}>
                   {display}
@@ -130,9 +133,9 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
         <div className="space-y-2">
           <Label htmlFor="globalAttrs">Global Attributes</Label>
           <Select
-            value={filters.hasGlobalAttributes === '' ? '' : filters.hasGlobalAttributes ? 'true' : 'false'}
+            value={filters.hasGlobalAttributes === '' ? 'all-attrs' : filters.hasGlobalAttributes ? 'true' : 'false'}
             onValueChange={(value) => {
-              const boolValue = value === '' ? '' : value === 'true';
+              const boolValue = value === 'all-attrs' ? '' : value === 'true';
               setFilters((prev) => ({ ...prev, hasGlobalAttributes: boolValue }));
             }}
           >
@@ -140,7 +143,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
               <SelectValue placeholder="Select global attributes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All</SelectItem>
+              <SelectItem value="all-attrs">All</SelectItem>
               <SelectItem value="true">Has Global Attributes</SelectItem>
               <SelectItem value="false">No Global Attributes</SelectItem>
             </SelectContent>

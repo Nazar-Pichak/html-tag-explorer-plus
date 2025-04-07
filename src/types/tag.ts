@@ -3,7 +3,7 @@ export interface HtmlTag {
   name: string;
   description: string;
   isPair: boolean;
-  display: 'block' | 'inline' | 'none' | 'inline-block' | 'flex' | 'grid' | 'table' | 'other';
+  display: 'block' | 'inline' | 'none' | 'inline-block' | 'flex' | 'grid' | 'table' | 'table-caption' | 'table-column' | 'table-column-group' | 'other';
   hasGlobalAttributes: boolean;
   specificAttributes: string[];
   eventListeners: string[];

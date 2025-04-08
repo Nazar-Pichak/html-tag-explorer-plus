@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Code2, Tag, Info } from 'lucide-react';
+import { Code2, Tag, Info, ArrowLeft } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -15,9 +15,13 @@ import {
 
 interface HeaderProps {
   showGlobalAttributesLink?: boolean;
+  showBackToTagsButton?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ showGlobalAttributesLink = true }) => {
+export const Header: React.FC<HeaderProps> = ({ 
+  showGlobalAttributesLink = true,
+  showBackToTagsButton = false
+}) => {
   const isMobile = useIsMobile();
   
   return (
@@ -79,6 +83,21 @@ export const Header: React.FC<HeaderProps> = ({ showGlobalAttributesLink = true 
               </NavigationMenu>
             )
           )}
+          
+          {showBackToTagsButton && (
+            <Button 
+              variant="outline" 
+              size="sm" 
+              asChild
+              className="flex items-center gap-1 mr-2"
+            >
+              <Link to="/">
+                <ArrowLeft size={16} />
+                <span>{isMobile ? "Tags" : "Back to Tags"}</span>
+              </Link>
+            </Button>
+          )}
+          
           <a 
             href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" 
             target="_blank" 

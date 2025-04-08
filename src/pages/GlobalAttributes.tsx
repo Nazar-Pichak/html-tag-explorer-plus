@@ -5,10 +5,8 @@ import { globalAttributes } from '@/data/globalAttributes';
 import { Input } from '@/components/ui/input';
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import { Search, ArrowLeft } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Link } from 'react-router-dom';
 
 const GlobalAttributes = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,24 +19,9 @@ const GlobalAttributes = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header showGlobalAttributesLink={false} />
+      <Header showGlobalAttributesLink={false} showBackToTagsButton={true} />
       <main className="flex-1 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              asChild
-              className="flex items-center gap-1"
-            >
-              <Link to="/">
-                <ArrowLeft size={16} />
-                <span>Back to Tags</span>
-              </Link>
-            </Button>
-            <h1 className="text-2xl font-bold">Global HTML Attributes</h1>
-          </div>
-        </div>
+        <h1 className="text-2xl font-bold mb-4">Global HTML Attributes</h1>
         
         <p className="text-gray-600 mb-6">
           Global attributes are attributes that can be used with all HTML elements.

@@ -16,7 +16,7 @@ export const ResponsiveTagView: React.FC<ResponsiveTagViewProps> = ({ tags, onSe
       {tags.map((tag) => (
         <Card 
           key={tag.name}
-          className={tag.category === 'Obsolete & Deprecated' ? 'border-red-200' : ''}
+          className={tag.category === 'Obsolete & Deprecated' ? 'bg-red-200 hover:bg-red-300 border-red-300' : ''}
         >
           <CardContent className="p-4">
             <div className="flex justify-between items-start">

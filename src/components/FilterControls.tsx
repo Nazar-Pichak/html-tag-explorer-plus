@@ -77,7 +77,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
             <SelectContent className="max-h-[280px]">
-              <SelectItem value="">All Categories</SelectItem>
+              <SelectItem value="all-categories">All Categories</SelectItem>
               {categoryOptions.map((category) => (
                 <SelectItem key={category} value={category}>
                   {category}

@@ -64,7 +64,7 @@ export const TagDetail: React.FC<TagDetailProps> = ({ tag }) => {
             <AccordionContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {tag.specificAttributes.map((attr) => (
-                  <Badge key={attr} variant="outline" className="justify-start font-mono">
+                  <Badge key={attr} variant="outline" className="justify-start font-mono text-xs sm:text-sm">
                     {attr}
                   </Badge>
                 ))}
@@ -79,7 +79,7 @@ export const TagDetail: React.FC<TagDetailProps> = ({ tag }) => {
             <AccordionContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {tag.eventListeners.map((event) => (
-                  <Badge key={event} variant="outline" className="justify-start font-mono">
+                  <Badge key={event} variant="outline" className="justify-start font-mono text-xs sm:text-sm">
                     {event}
                   </Badge>
                 ))}

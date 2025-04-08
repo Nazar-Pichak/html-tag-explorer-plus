@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { 
   ChevronDown, 
@@ -23,26 +24,17 @@ import {
   DialogTitle, 
   DialogTrigger 
 } from '@/components/ui/dialog';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { htmlTags } from '@/data/htmlTags';
 import { FilterState, HtmlTag, SortDirection, TagCategory } from '@/types/tag';
 import { FilterControls } from './FilterControls';
 import { TagDetail } from './TagDetail';
+import { ResponsiveTagView } from './ResponsiveTagView';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export const TagExplorer: React.FC = () => {
+  const isMobile = useIsMobile();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState<{ key: keyof HtmlTag; direction: SortDirection }>({
     key: 'name',
@@ -133,8 +125,8 @@ export const TagExplorer: React.FC = () => {
   const activeFiltersCount = Object.values(filters).filter(value => value !== '').length;
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div className="space-y-3 sm:space-y-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
         <div className="relative w-full sm:w-64 md:w-96">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
           <Input
@@ -145,7 +137,7 @@ export const TagExplorer: React.FC = () => {
           />
         </div>
         
-        <div className="flex items-center gap-2 w-full sm:w-auto">
+        <div className="flex items-center gap-2 w-full sm:w-auto mt-2 sm:mt-0">
           <Dialog open={isFilterDialogOpen} onOpenChange={setIsFilterDialogOpen}>
             <DialogTrigger asChild>
               <Button variant="outline" className="flex items-center gap-2">
@@ -156,7 +148,7 @@ export const TagExplorer: React.FC = () => {
                 )}
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md max-h-[90vh] overflow-auto">
               <DialogHeader>
                 <DialogTitle>Filter Tags</DialogTitle>
               </DialogHeader>
@@ -235,117 +227,121 @@ export const TagExplorer: React.FC = () => {
         </Card>
       )}
       
-      <div className="rounded-md border bg-white overflow-x-auto">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[120px] cursor-pointer" onClick={() => handleSort('name')}>
-                <div className="flex items-center">
-                  Tag Name
-                  {sortConfig.key === 'name' && (
-                    sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
-                  )}
-                </div>
-              </TableHead>
-              <TableHead className="cursor-pointer" onClick={() => handleSort('description')}>
-                <div className="flex items-center">
-                  Description
-                  {sortConfig.key === 'description' && (
-                    sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
-                  )}
-                </div>
-              </TableHead>
-              <TableHead className="w-[100px] cursor-pointer" onClick={() => handleSort('isPair')}>
-                <div className="flex items-center">
-                  Type
-                  {sortConfig.key === 'isPair' && (
-                    sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
-                  )}
-                </div>
-              </TableHead>
-              <TableHead className="w-[100px] cursor-pointer" onClick={() => handleSort('display')}>
-                <div className="flex items-center">
-                  Display
-                  {sortConfig.key === 'display' && (
-                    sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
-                  )}
-                </div>
-              </TableHead>
-              <TableHead className="w-[110px] cursor-pointer" onClick={() => handleSort('hasGlobalAttributes')}>
-                <div className="flex items-center">
-                  Global Attrs
-                  {sortConfig.key === 'hasGlobalAttributes' && (
-                    sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
-                  )}
-                </div>
-              </TableHead>
-              <TableHead className="w-[140px] cursor-pointer" onClick={() => handleSort('category')}>
-                <div className="flex items-center">
-                  Category
-                  {sortConfig.key === 'category' && (
-                    sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
-                  )}
-                </div>
-              </TableHead>
-              <TableHead className="w-[100px] text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sortedTags.length > 0 ? (
-              sortedTags.map((tag) => (
-                <TableRow 
-                  key={tag.name}
-                  onClick={() => setSelectedTag(tag)}
-                  className={tag.category === 'Obsolete & Deprecated' ? 'bg-red-200 hover:bg-red-300 cursor-pointer' : "hover:bg-muted/50 cursor-pointer"}
-                >
-                  <TableCell className="font-mono font-medium">
-                    &lt;{tag.name}&gt;
-                  </TableCell>
-                  <TableCell className="max-w-[400px] truncate">{tag.description}</TableCell>
-                  <TableCell>
-                    {tag.isPair ? (
-                      <Badge variant="outline" className="bg-blue-100">Pair</Badge>
-                    ) : (
-                      <Badge variant="outline" className="bg-amber-100">Single</Badge>
+      {isMobile ? (
+        <ResponsiveTagView tags={sortedTags} onSelectTag={setSelectedTag} />
+      ) : (
+        <div className="rounded-md border bg-white overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[120px] cursor-pointer" onClick={() => handleSort('name')}>
+                  <div className="flex items-center">
+                    Tag Name
+                    {sortConfig.key === 'name' && (
+                      sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
                     )}
-                  </TableCell>
-                  <TableCell>{tag.display}</TableCell>
-                  <TableCell>
-                    {tag.hasGlobalAttributes ? (
-                      <Badge variant="outline" className="bg-green-100">Yes</Badge>
-                    ) : (
-                      <Badge variant="outline" className="bg-red-100">No</Badge>
+                  </div>
+                </TableHead>
+                <TableHead className="cursor-pointer" onClick={() => handleSort('description')}>
+                  <div className="flex items-center">
+                    Description
+                    {sortConfig.key === 'description' && (
+                      sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
                     )}
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="secondary" className="whitespace-nowrap">
-                      {tag.category}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedTag(tag);
-                      }}
-                    >
-                      Details
-                    </Button>
+                  </div>
+                </TableHead>
+                <TableHead className="w-[100px] cursor-pointer" onClick={() => handleSort('isPair')}>
+                  <div className="flex items-center">
+                    Type
+                    {sortConfig.key === 'isPair' && (
+                      sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
+                    )}
+                  </div>
+                </TableHead>
+                <TableHead className="w-[100px] cursor-pointer" onClick={() => handleSort('display')}>
+                  <div className="flex items-center">
+                    Display
+                    {sortConfig.key === 'display' && (
+                      sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
+                    )}
+                  </div>
+                </TableHead>
+                <TableHead className="w-[110px] cursor-pointer" onClick={() => handleSort('hasGlobalAttributes')}>
+                  <div className="flex items-center">
+                    Global Attrs
+                    {sortConfig.key === 'hasGlobalAttributes' && (
+                      sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
+                    )}
+                  </div>
+                </TableHead>
+                <TableHead className="w-[140px] cursor-pointer" onClick={() => handleSort('category')}>
+                  <div className="flex items-center">
+                    Category
+                    {sortConfig.key === 'category' && (
+                      sortConfig.direction === 'asc' ? <ChevronUp className="ml-1 h-4 w-4" /> : <ChevronDown className="ml-1 h-4 w-4" />
+                    )}
+                  </div>
+                </TableHead>
+                <TableHead className="w-[100px] text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {sortedTags.length > 0 ? (
+                sortedTags.map((tag) => (
+                  <TableRow 
+                    key={tag.name}
+                    onClick={() => setSelectedTag(tag)}
+                    className={tag.category === 'Obsolete & Deprecated' ? 'bg-red-200 hover:bg-red-300 cursor-pointer' : "hover:bg-muted/50 cursor-pointer"}
+                  >
+                    <TableCell className="font-mono font-medium">
+                      &lt;{tag.name}&gt;
+                    </TableCell>
+                    <TableCell className="max-w-[400px] truncate">{tag.description}</TableCell>
+                    <TableCell>
+                      {tag.isPair ? (
+                        <Badge variant="outline" className="bg-blue-100">Pair</Badge>
+                      ) : (
+                        <Badge variant="outline" className="bg-amber-100">Single</Badge>
+                      )}
+                    </TableCell>
+                    <TableCell>{tag.display}</TableCell>
+                    <TableCell>
+                      {tag.hasGlobalAttributes ? (
+                        <Badge variant="outline" className="bg-green-100">Yes</Badge>
+                      ) : (
+                        <Badge variant="outline" className="bg-red-100">No</Badge>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="secondary" className="whitespace-nowrap">
+                        {tag.category}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedTag(tag);
+                        }}
+                      >
+                        Details
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={7} className="h-24 text-center">
+                    No results found.
                   </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={7} className="h-24 text-center">
-                  No results found.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      )}
       
       <div className="text-sm text-gray-500 text-right">
         Showing {sortedTags.length} of {htmlTags.length} tags
@@ -353,7 +349,7 @@ export const TagExplorer: React.FC = () => {
       
       {selectedTag && (
         <Dialog open={!!selectedTag} onOpenChange={(open) => !open && setSelectedTag(null)}>
-          <DialogContent className="sm:max-w-lg">
+          <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-auto">
             <DialogHeader>
               <DialogTitle className="font-mono">
                 &lt;{selectedTag.name}&gt;

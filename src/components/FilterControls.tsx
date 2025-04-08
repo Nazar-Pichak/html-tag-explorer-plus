@@ -73,11 +73,11 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
             value={filters.category}
             onValueChange={(value) => setFilters((prev) => ({ ...prev, category: value as TagCategory }))}
           >
-            <SelectTrigger id="category">
+            <SelectTrigger id="category" className="truncate">
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all-categories">All Categories</SelectItem>
+            <SelectContent className="max-h-[280px]">
+              <SelectItem value="">All Categories</SelectItem>
               {categoryOptions.map((category) => (
                 <SelectItem key={category} value={category}>
                   {category}
@@ -102,7 +102,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
             <SelectContent>
               <SelectItem value="all-types">All Types</SelectItem>
               <SelectItem value="true">Pair Tags</SelectItem>
-              <SelectItem value="false">Self-closing Tags</SelectItem>
+              <SelectItem value="false">Single Tags</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -119,7 +119,7 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
             <SelectTrigger id="display">
               <SelectValue placeholder="Select display type" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="max-h-[280px]">
               <SelectItem value="all-display-types">All Display Types</SelectItem>
               {displayOptions.map((display) => (
                 <SelectItem key={display} value={display}>

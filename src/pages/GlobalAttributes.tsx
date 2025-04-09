@@ -7,6 +7,7 @@ import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@
 import { Separator } from '@/components/ui/separator';
 import { Search } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Card, CardContent } from '@/components/ui/card';
 
 const GlobalAttributes = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,62 +41,72 @@ const GlobalAttributes = () => {
         
         <Separator className="my-4" />
         
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[150px] font-bold">Attribute</TableHead>
-                  <TableHead className="font-bold">Description</TableHead>
-                  {!isMobile && (
-                    <>
-                      <TableHead className="font-bold">Values</TableHead>
-                      <TableHead className="font-bold">Applicable Tags</TableHead>
-                    </>
-                  )}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredAttributes.map((attr) => (
-                  <React.Fragment key={attr.name}>
-                    {/* Desktop view - full row */}
-                    {!isMobile && (
-                      <TableRow>
+        {isMobile ? (
+          <div className="grid grid-cols-1 gap-4">
+            {filteredAttributes.length > 0 ? (
+              filteredAttributes.map((attr) => (
+                <Card key={attr.name} className="overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="bg-blue-50 p-3 border-b">
+                      <h3 className="font-mono font-bold text-blue-700">{attr.name}</h3>
+                    </div>
+                    <div className="p-4 space-y-3">
+                      <p>{attr.description}</p>
+                      <div>
+                        <h4 className="font-semibold text-sm mb-1">Values:</h4>
+                        <p className="text-sm">{attr.values.join(', ')}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-sm mb-1">Applicable Tags:</h4>
+                        <p className="text-sm">{attr.applicableTags.join(', ')}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <div className="text-center py-8 bg-white rounded-lg shadow">
+                <p>No attributes found matching "{searchTerm}"</p>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="bg-white rounded-lg shadow overflow-hidden">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[150px] font-bold">Attribute</TableHead>
+                    <TableHead className="font-bold">Description</TableHead>
+                    <TableHead className="font-bold">Values</TableHead>
+                    <TableHead className="font-bold">Applicable Tags</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredAttributes.length > 0 ? (
+                    filteredAttributes.map((attr) => (
+                      <TableRow key={attr.name}>
                         <TableCell className="font-mono">{attr.name}</TableCell>
                         <TableCell>{attr.description}</TableCell>
                         <TableCell>{attr.values.join(', ')}</TableCell>
                         <TableCell>{attr.applicableTags.join(', ')}</TableCell>
                       </TableRow>
-                    )}
-                    
-                    {/* Mobile view - stacked layout */}
-                    {isMobile && (
-                      <TableRow className="flex flex-col border-b p-4">
-                        <div className="font-bold font-mono text-blue-600 mb-2">{attr.name}</div>
-                        <div className="mb-2">{attr.description}</div>
-                        <div>
-                          <span className="font-semibold">Values: </span>
-                          <span>{attr.values.join(', ')}</span>
-                        </div>
-                        <div className="mt-1">
-                          <span className="font-semibold">Applicable Tags: </span>
-                          <span>{attr.applicableTags.join(', ')}</span>
-                        </div>
-                      </TableRow>
-                    )}
-                  </React.Fragment>
-                ))}
-                
-                {filteredAttributes.length === 0 && (
-                  <TableRow>
-                    <TableCell colSpan={isMobile ? 2 : 4} className="text-center py-8">
-                      No attributes found matching "{searchTerm}"
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-center py-8">
+                        No attributes found matching "{searchTerm}"
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
           </div>
+        )}
+        
+        <div className="mt-4 text-sm text-gray-500 text-right">
+          Showing {filteredAttributes.length} of {globalAttributes.length} attributes
         </div>
       </main>
       <footer className="bg-white border-t py-2 sm:py-4 mt-4">

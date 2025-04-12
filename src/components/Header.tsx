@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
-          <Link to="/" className={`${isMobile ? "text-lg" : "text-xl"} font-bold text-gray-900 hover:text-blue-700 transition-colors`}>
+          <Link to="/" className={`${isMobile ? "text-sm" : "text-xl"} font-bold text-gray-900 hover:text-blue-700 transition-colors`}>
             HTML Tag Explorer
           </Link>
         </div>

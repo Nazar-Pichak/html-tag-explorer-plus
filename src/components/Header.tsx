@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="h-9 px-4 bg-transparent">Explore</NavigationMenuTrigger>
-                  <NavigationMenuContent className="left-0 right-auto origin-top-left">
+                  <NavigationMenuContent className="right-0 left-auto origin-top-right">
                     <ul className="grid gap-3 p-4 w-[220px]">
                       <li>
                         <NavigationMenuLink asChild>
